@@ -55,7 +55,7 @@
   #endif
 #endif
 
-#ifdef MyCNC30_ON
+#ifdef MegaCNC30_ON
   #ifdef Configuration_Found
     #define Configuration_Duplicate
   #else

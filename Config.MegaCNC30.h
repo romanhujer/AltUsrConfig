@@ -9,9 +9,9 @@
  *
 */
 
-#define MyCNC30_OFF   //  <- Turn _ON to use this configuration
+#define MegaCNC30_OFF   //  <- Turn _ON to use this configuration
 
-#ifdef MyCNC30_ON
+#ifdef MegaCNC30_ON
 // -------------------------------------------------------------------------------------------------------------------------
 // ADJUST THE FOLLOWING TO CONFIGURE YOUR CONTROLLER FEATURES --------------------------------------------------------------
 
