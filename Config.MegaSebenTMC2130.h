@@ -11,7 +11,7 @@
  *
 */
 
-#define MegaSebenTMC2130_ON   //  <- Turn _ON to use this configuration
+#define MegaSebenTMC2130_OFF   //  <- Turn _ON to use this configuration
 
 #ifdef MegaSebenTMC2130_ON
 

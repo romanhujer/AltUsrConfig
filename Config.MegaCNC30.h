@@ -1,5 +1,7 @@
 // -----------------------------------------------------------------------------------
-//
+// for Seben EQ3  master config
+// Configuration for legacy OnStep "Alternate pin-map" (Mega2560) 
+// *** this is for backwards compatability with older OnStep systems ***
 
 /*
  * For more information on setting OnStep up see http://www.stellarjourney.com/index.php?r=site/equipment_onstep and 
@@ -9,9 +11,9 @@
  *
 */
 
-#define MegaCNC30_OFF   //  <- Turn _ON to use this configuration
+#define MegaCNC30_ON   //  <- Turn _ON to use this configuration
 
-#ifdef MegaCNC30_ON
+#ifdef MegaCNC30_ON 
 // -------------------------------------------------------------------------------------------------------------------------
 // ADJUST THE FOLLOWING TO CONFIGURE YOUR CONTROLLER FEATURES --------------------------------------------------------------
 
@@ -39,7 +41,6 @@
 // Guide time limit (in seconds,) default=0 (no limit.)  A safety feature, some guides are started with one command and stopped with another.  
 // If the stop command is never received the guide will continue forever unless this is enabled.
 #define GUIDE_TIME_LIMIT 0
-
 
 // RTC (Real Time Clock) support, default=_OFF. 
 // Other options: RTC_DS3234 for a DS3234 on the default SPI interface pins (CS on pin 10) or RTC_DS3231 for a DS3231 on the default I2C pins (optionally wire the SQW output to the PPS pin below.) 
@@ -170,6 +171,8 @@
 #define AXIS2_FAULT_OFF
 
 // ------------------------------------------------------------------------------------------------------------------------
+// FOCUSER ROTATOR OR ALT/AZ DE-ROTATION ----------------------------------------------------------------------------------
+// A9,A8 = Step,Dir
 #define ROTATOR_OFF                  // enable or disable rotator feature (for any mount type,) default=_OFF (de-rotator is available only for MOUNT_TYPE_ALTAZM.)
 #define MaxRateAxis3               8 // this is the minimum number of milli-seconds between micro-steps, default=8
 #define StepsPerDegreeAxis3     64.0 // calculated as    :  stepper_steps * micro_steps * gear_reduction1 * (gear_reduction2/360)
@@ -181,6 +184,7 @@
 #define AXIS3_REVERSE_OFF            // reverse the direction of Axis3 rotator movement
 
 // FOCUSER1 ---------------------------------------------------------------------------------------------------------------
+// A11,A10 = Step,Dir
 #define FOCUSER1_OFF                 // enable or disable focuser feature, default=_OFF
 #define MaxRateAxis4               8 // this is the minimum number of milli-seconds between micro-steps, default=8
 #define StepsPerMicrometerAxis4  0.5 // figure this out by testing or other means
@@ -188,11 +192,10 @@
 #define MaxAxis4                25.0 // maximum allowed Axis4 position in millimeters, default =  25.0
 #define AXIS4_REVERSE_OFF            // reverse the direction of Axis4 focuser movement
 
-
 // THAT'S IT FOR USER CONFIGURATION!
 
 // -------------------------------------------------------------------------------------------------------------------------
 #define FileVersionConfig 2
-#include "Pins.MegaCNC30.h"
+ #include "Pins.MegaCNC30.h"
 #endif
 

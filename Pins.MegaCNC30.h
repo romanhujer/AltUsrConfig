@@ -1,71 +1,66 @@
 // -------------------------------------------------------------------------------------------------
-// Pin map for  OnStep "CNC 3.0 Shield" (Mega2560)
-
+// Pin map for legacy OnStep "Alternate pin-map" (Mega2560)
 
 #if defined(__AVR_ATmega2560__) || defined(__SAM3X8E__)
 
 
 // The PEC index sense is a 5V logic input, resets the PEC index on rising edge then waits for 60 seconds before allowing another reset
-#define PecPin         2
-#define AnalogPecPin   1
+#define PecPin         11 // Pin 11  Limit Z
+#define AnalogPecPin   1  // Pin A1  <-Hold
 
 // The limit switch sense is a 5V logic input which uses the internal pull up, shorted to ground it stops gotos/tracking
-#define LimitPin       3
+#define LimitPin       A0  // Pin A0 <- Abort 
 
 // The status LED is a two wire jumper with a 10k resistor in series to limit the current to the LED
-#define LEDposPin      8    // Pin 8 (LED)
-#define LEDnegPin      9    // Pin 9 (GND)
-#define LEDneg2Pin     7    // Pin 7 (GND)
-#define ReticulePin   44    // Pin 44 (GND)  
+#define LEDposPin     12   // Pin 12 (LED) SpnDir 
+#define LEDnegPin     13   // Pin 13 (LED) SpnEn 
+#define LEDneg2Pin    9   // Pin 9 (GND) Limit- X
+#define ReticulePin   44   // Pin 44 (GND) 
 
 // For a piezo buzzer
-#define TonePin       42    // Pin 42 (Tone)
+#define TonePin       42    // Pin 42 (Tone)  
 
 // The PPS pin is a 5V logic input, OnStep measures time between rising edges and adjusts the internal sidereal clock frequency
-#define PpsPin        21    // Interrupt 2 on Pin 21 (alternate Int3 on Pin20)
-#define DS3234_CS_PIN 10
+#define PpsPin        21    // Interrupt 2 on Pin 21 (alternate Int3 on Pin20) 
+#define DS3234_CS_PIN 10    // Pin 10 (<- Y Limit)
                          
-// Pins to enable/disable the stepper drivers and set microstep mode, optional and normally just hard-wired (DRV8825)/ignored (BED-A4988)
-#define Axis1DirPin   37    // Pin 37 (Dir)  PC0
+// Pins RA/Azm on CNC X
+#define Axis1DirPin    5   // Pin 5 (Dir)  (<- X Dir)
 #define Axis1DirBit    0    //
 #define Axis1DirPORT  PORTC //
-#define Axis1StepPin  35    // Pin 35 (Step) PC2
+#define Axis1StepPin   2    // Pin  (Step) (<-  X Step)
 #define Axis1StepBit   2    //
 #define Axis1StepPORT PORTC //
 
-#define Axis1_M0      29    // Pin 29 (Microstep or Decay Mode 0)
-#define Axis1_M1      27    // Pin 27 (Microstep or Decay Mode 1)
-#define Axis1_M2      25    // Pin 25 (Microstep or Decay Mode 2)
-#define Axis1_EN      23    // Pin 23 (Enable)
-#define Axis1_FAULT   39    // Pin 39 (Fault)
 #define Axis1_Aux     39    // Pin 39 (Aux - SPI MISO)
-#define Axis1_Mode    41    // Pin 41 (Aux Decay Mode for Axis1)
+#define Axis1_M2      25    // Pin 25 (Microstep or Decay Mode 2 or SPI CS)
+#define Axis1_M1      27    // Pin 27 (Microstep or Decay Mode 1 or SPI SCK)
+#define Axis1_M0      29    // Pin 29 (Microstep or Decay Mode 0 or SPI MOSI)
+#define Axis1_EN      8     // Pin 8 (Enable) (<-Steper Enable)
 
-// The HA(RA) and Dec jumpers (going to the big easy drivers) are simply four wire jumper cables, each has identical wiring - simple modular construction
-#define Axis2DirPin   22    // Pin 22 (Dir)   PA0
-#define Axis2DirBit    0    //
+
+// Pins to Axis2 Dec/Alt on CNC Y
+#define Axis2DirPin   6     // Pin 6 (Dir)   (<- Y Dir)
+#define Axis2DirBit   0     //
 #define Axis2DirPORT  PORTA //
-#define Axis2StepPin  24    // Pin 24 (Step)  PA2
-#define Axis2StepBit   2    //
+#define Axis2StepPin  3     // Pin 3 (Step)  (<-  Y Step)
+#define Axis2StepBit  2     //
 #define Axis2StepPORT PORTA //
 
-#define Axis2_M0      30    // Pin 30 (Microstep or Decay Mode 0)
-#define Axis2_M1      32    // Pin 32 (Microstep or Decay Mode 1)
-#define Axis2_M2      34    // Pin 34 (Microstep or Decay Mode 2)
-#define Axis2_EN      36    // Pin 36 (Enabled)
-#define Axis2_FAULT   38    // Pin 38 (Fault)
 #define Axis2_Aux     38    // Pin 38 (Aux - SPI MISO)
-#define Axis2_Mode    40    // Pin 40 (Aux Decay Mode for Axis2)
+#define Axis2_M2      34    // Pin 34 (Microstep or Decay Mode 2 or SPI CS )
+#define Axis2_M1      32    // Pin 32 (Microstep or Decay Mode 1 or SPI SCK)
+#define Axis2_M0      30    // Pin 30 (Microstep or Decay Mode 0 or SPI MOSI)
+#define Axis2_EN      8     // Pin 8 (Enabled) ( Not USE) (Wiring is Common with pin 8 <-Steper Enable)
 
-// For rotator stepper driver 
-#define Axis3DirPin   A8    // Pin A8 (Dir)
-#define Axis3StepPin  A9    // Pin A9 (Step)
-
-// For focuser1 stepper driver
-#define Axis4DirPin   A10    // Pin A10 (Dir)
-#define Axis4StepPin  A11    // Pin A11 (Step)
+// For rotator stepper driver on CNC Z
+#define Axis3DirPin   5    // Pin 5 (Dir)
+#define Axis3StepPin  2    // Pin 2 (Step)
 
 
+// For focuser1 stepper driver  CNC  Spindler (A  need wiring pins ) 
+#define Axis4DirPin   A10    // Pin A10 (Dir)  
+#define Axis4StepPin  A11    // Pin 11 (Step) 
 
 
 // ST4 interface
