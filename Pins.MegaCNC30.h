@@ -25,12 +25,12 @@
 #define DS3234_CS_PIN 10    // Pin 10 (<- Y Limit)
                          
 // Pins RA/Azm on CNC X
-#define Axis1DirPin    5   // Pin 5 (Dir)  (<- X Dir)
-#define Axis1DirBit    0    //
-#define Axis1DirPORT  PORTC //
+#define Axis1DirPin    5    // Pin 5 (Dir)  (<- X Dir)
+#define Axis1DirBit    3    // 0x08
+#define Axis1DirPORT  PORTE //
 #define Axis1StepPin   2    // Pin  (Step) (<-  X Step)
-#define Axis1StepBit   2    //
-#define Axis1StepPORT PORTC //
+#define Axis1StepBit   4    // 0x10
+#define Axis1StepPORT PORTE //
 
 #define Axis1_Aux     39    // Pin 39 (Aux - SPI MISO)
 #define Axis1_M2      25    // Pin 25 (Microstep or Decay Mode 2 or SPI CS)
@@ -41,11 +41,11 @@
 
 // Pins to Axis2 Dec/Alt on CNC Y
 #define Axis2DirPin   6     // Pin 6 (Dir)   (<- Y Dir)
-#define Axis2DirBit   0     //
-#define Axis2DirPORT  PORTA //
+#define Axis2DirBit   3     // 0x08
+#define Axis2DirPORT  PORTH //
 #define Axis2StepPin  3     // Pin 3 (Step)  (<-  Y Step)
-#define Axis2StepBit  2     //
-#define Axis2StepPORT PORTA //
+#define Axis2StepBit  5     //  0x20
+#define Axis2StepPORT PORTE //
 
 #define Axis2_Aux     38    // Pin 38 (Aux - SPI MISO)
 #define Axis2_M2      34    // Pin 34 (Microstep or Decay Mode 2 or SPI CS )
