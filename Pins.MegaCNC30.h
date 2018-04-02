@@ -1,7 +1,10 @@
 // -------------------------------------------------------------------------------------------------
-// Pin map for legacy OnStep "Alternate pin-map" (Mega2560)
+// Pin map for OnStep "CNC 3.0 Shield" (Mega2560) 
 
-#if defined(__AVR_ATmega2560__) || defined(__SAM3X8E__)
+
+//#if defined(__AVR_ATmega2560__) || defined(__SAM3X8E__)  //__SAM3X8E__  Not now support
+
+#if defined(__AVR_ATmega2560__) 
 
 
 // The PEC index sense is a 5V logic input, resets the PEC index on rising edge then waits for 60 seconds before allowing another reset
@@ -32,11 +35,16 @@
 #define Axis1StepBit   4    // 0x10
 #define Axis1StepPORT PORTE //
 
-#define Axis1_Aux     39    // Pin 39 (Aux - SPI MISO)
-#define Axis1_M2      25    // Pin 25 (Microstep or Decay Mode 2 or SPI CS)
+#ifndef ALT_ENABLE_PIN_ON
+ #define Axis1_EN      8    // Pin 8  (Enable <-Steper Enable) (CNC default wiring is common for all driver is pin 8)
+#else
+ #define Axis1_EN     23    // Pin 23 (Enable for alternate wirning)
+#endif
+#define Axis1_M0      25    // Pin 29 (Microstep or Decay Mode 0 or SPI MOSI)
 #define Axis1_M1      27    // Pin 27 (Microstep or Decay Mode 1 or SPI SCK)
-#define Axis1_M0      29    // Pin 29 (Microstep or Decay Mode 0 or SPI MOSI)
-#define Axis1_EN      8     // Pin 8 (Enable) (<-Steper Enable)
+#define Axis1_M2      29    // Pin 25 (Microstep or Decay Mode 2 or SPI CS)
+#define Axis1_Aux     31    // Pin 39 (Aux - SPI MISO)
+#define Axis1_Mode    33    // Pin 32 (Aux Decay Mode for Axis1)
 
 
 // Pins to Axis2 Dec/Alt on CNC Y
@@ -47,21 +55,26 @@
 #define Axis2StepBit  5     //  0x20
 #define Axis2StepPORT PORTE //
 
-#define Axis2_Aux     38    // Pin 38 (Aux - SPI MISO)
-#define Axis2_M2      34    // Pin 34 (Microstep or Decay Mode 2 or SPI CS )
-#define Axis2_M1      32    // Pin 32 (Microstep or Decay Mode 1 or SPI SCK)
-#define Axis2_M0      30    // Pin 30 (Microstep or Decay Mode 0 or SPI MOSI)
-#define Axis2_EN      8     // Pin 8 (Enabled) ( Not USE) (Wiring is Common with pin 8 <-Steper Enable)
+#ifndef ALT_ENABLE_PIN_ON 
+  #define Axis2_EN      8     // Pin 8 (Enabled) (CNC default wiring is common for all driver pin 8) <-Steper Enable)
+  #define AXIS2_AUTO_POWER_DOWN_OFF  // for CNC3.0 default wiring must by OFF
+#else
+  #define Axis2_EN     22   // Pin 22 (Enable alternate wirning)
+#endif
+#define Axis2_M0      24    // Pin 30 (Microstep or Decay Mode 0 or SPI MOSI)
+#define Axis2_M1      26    // Pin 32 (Microstep or Decay Mode 1 or SPI SCK)
+#define Axis2_M2      28    // Pin 34 (Microstep or Decay Mode 2 or SPI CS )
+#define Axis2_Aux     30    // Pin 38 (Aux - SPI MISO)
+#define Axis2_Mode    32    // Pin 32 (Aux Decay Mode for Axis2)
 
 // For rotator stepper driver on CNC Z
-#define Axis3DirPin   5    // Pin 5 (Dir)
-#define Axis3StepPin  2    // Pin 2 (Step)
+#define Axis3DirPin   7    // Pin 7 (Dir)
+#define Axis3StepPin  4    // Pin 4 (Step)
 
 
-// For focuser1 stepper driver  CNC  Spindler (A  need wiring pins ) 
+// For focuser1 stepper driver  CNC  A  (must by add wiring) 
 #define Axis4DirPin   A10    // Pin A10 (Dir)  
 #define Axis4StepPin  A11    // Pin 11 (Step) 
-
 
 // ST4 interface
 #define ST4RAw        47    // Pin 47 ST4 RA- West
@@ -71,7 +84,7 @@
 
 
 #else
-#error "Wrong processor for this configuration!"
+ #error "Wrong processor for this configuration!"
 
 #endif
 

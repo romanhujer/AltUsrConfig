@@ -73,7 +73,7 @@
 
 // Sound/buzzer on Pin 42, default=_OFF.
 // Specify frequency for a piezo speaker (for example "BUZZER 2000") or use BUZZER_ON for a piezo buzzer.
-#define BUZZER 884
+#define BUZZER_ON
 // Sound state at startup, default=_ON.
 #define DEFAULT_SOUND_ON
 
