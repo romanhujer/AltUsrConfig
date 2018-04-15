@@ -171,19 +171,6 @@
 #define AXIS1_FAULT_LOW
 #define AXIS2_FAULT_LOW
 
-// ------------------------------------------------------------------------------------------------------------------------
-// FOCUSER ROTATOR OR ALT/AZ DE-ROTATION ----------------------------------------------------------------------------------
-// A9,A8 = Step,Dir
-#define ROTATOR_OFF                  // enable or disable rotator feature (for any mount type,) default=_OFF (de-rotator is available only for MOUNT_TYPE_ALTAZM.)
-#define MaxRateAxis3               8 // this is the minimum number of milli-seconds between micro-steps, default=8
-#define StepsPerDegreeAxis3     64.0 // calculated as    :  stepper_steps * micro_steps * gear_reduction1 * (gear_reduction2/360)
-                                     // Rotator          :  24            * 8           * 20              *  6/360                = 64
-                                     // For de-rotation of Alt/Az mounts a quick estimate of the required resolution (in StepsPerDegree)
-                                     // would be an estimate of the circumference of the useful imaging circle in (pixels * 2)/360
-#define MinAxis3                -180 // minimum allowed Axis3 rotator, default = -180
-#define MaxAxis3                 180 // maximum allowed Axis3 rotator, default =  180
-#define AXIS3_REVERSE_OFF            // reverse the direction of Axis3 rotator movement
-
 // FOCUSER1 ---------------------------------------------------------------------------------------------------------------
 // A11,A10 = Step,Dir
 #define FOCUSER1_OFF                 // enable or disable focuser feature, default=_OFF

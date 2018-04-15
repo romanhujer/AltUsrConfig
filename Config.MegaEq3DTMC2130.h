@@ -1,8 +1,5 @@
 // -----------------------------------------------------------------------------------
 // For 3Dprimted EQ mount TMC2130 diver
-//
-// Configuration for legacy OnStep "Alternate pin-map" (Mega2560) 
-// *** this is for backwards compatability with older OnStep systems ***
 
 /*
  * For more information on setting OnStep up see http://www.stellarjourney.com/index.php?r=site/equipment_onstep and 
@@ -166,17 +163,6 @@
 #define AXIS2_FAULT TMC2130
 
 // ------------------------------------------------------------------------------------------------------------------------
-// FOCUSER ROTATOR OR ALT/AZ DE-ROTATION ----------------------------------------------------------------------------------
-// A9,A8 = Step,Dir
-#define ROTATOR_OFF                  // enable or disable rotator feature (for any mount type,) default=_OFF (de-rotator is available only for MOUNT_TYPE_ALTAZM.)
-#define MaxRateAxis3               8 // this is the minimum number of milli-seconds between micro-steps, default=8
-#define StepsPerDegreeAxis3     64.0 // calculated as    :  stepper_steps * micro_steps * gear_reduction1 * (gear_reduction2/360)
-                                     // Rotator          :  24            * 8           * 20              *  6/360                = 64
-                                     // For de-rotation of Alt/Az mounts a quick estimate of the required resolution (in StepsPerDegree)
-                                     // would be an estimate of the circumference of the useful imaging circle in (pixels * 2)/360
-#define MinAxis3                -180 // minimum allowed Axis3 rotator, default = -180
-#define MaxAxis3                 180 // maximum allowed Axis3 rotator, default =  180
-#define AXIS3_REVERSE_OFF            // reverse the direction of Axis3 rotator movement
 
 // FOCUSER1 ---------------------------------------------------------------------------------------------------------------
 // A11,A10 = Step,Dir
@@ -187,14 +173,6 @@
 #define MaxAxis4                25.0 // maximum allowed Axis4 position in millimeters, default =  25.0
 #define AXIS4_REVERSE_OFF            // reverse the direction of Axis4 focuser movement
 
-// FOCUSER2 ---------------------------------------------------------------------------------------------------------------
-// A13,A12 = Step,Dir
-#define FOCUSER2_OFF                 // enable or disable focuser feature, default=_OFF
-#define MaxRateAxis5               8 // this is the minimum number of milli-seconds between micro-steps, default=8
-#define StepsPerMicrometerAxis5  0.5 // figure this out by testing or other means
-#define MinAxis5               -25.0 // minimum allowed Axis5 position in millimeters, default = -25.0
-#define MaxAxis5                25.0 // maximum allowed Axis5 position in millimeters, default =  25.0
-#define AXIS5_REVERSE_OFF            // reverse the direction of Axis5 focuser movement
 
 // THAT'S IT FOR USER CONFIGURATION!
 

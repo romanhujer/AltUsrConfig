@@ -1,8 +1,7 @@
 // -----------------------------------------------------------------------------------
-// for Seben EQ3  master config
-// Configuration for legacy OnStep "Alternate pin-map" (Mega2560) 
-// *** this is for backwards compatability with older OnStep systems ***
-
+// Configuration OnStep for "CNC 3.0 Shiled " (Mega2560) 
+//              http://osoyoo.com/2017/04/07/arduino-uno-cnc-shield-v3-0-a4988/
+//
 /*
  * For more information on setting OnStep up see http://www.stellarjourney.com/index.php?r=site/equipment_onstep and 
  * join the OnStep Groups.io at https://groups.io/g/onstep
@@ -11,7 +10,7 @@
  *
 */
 
-#define MegaCNC30_ON   //  <- Turn _ON to use this configuration
+#define MegaCNC30_ON  //  <- Turn _ON to use this configuration
 
 #ifdef MegaCNC30_ON 
 // -------------------------------------------------------------------------------------------------------------------------
@@ -25,7 +24,7 @@
 #define MOUNT_TYPE_GEM
 
 // ST4 interface on Pins 47, 43, 45, 49.  Pin 47 is RA- (West), Pin 43 is Dec- (South), Pin 45 is Dec+ (North), Pin 49 is RA+ (East.)
-// ST4_ON enables the interface.  ST4_PULLUP enables the interface and any internal pullup resistors.  default=_OFF
+// ST4_ON enables the interface.  ST4_PULLUP enables the interface and any internal pullup resistors.  default=
 // It is up to you to create an interface that meets the electrical specifications of any connected device, use at your own risk.
 #define ST4_PULLUP
 // If SEPARATE_PULSE_GUIDE_RATE_ON is used the ST4 port is limited to guide rates <= 1X except when ST4_HAND_CONTROL_ON is used.
@@ -43,14 +42,14 @@
 #define GUIDE_TIME_LIMIT 0
 
 // RTC (Real Time Clock) support, default=_OFF. 
-// Other options: RTC_DS3234 for a DS3234 on the default SPI interface pins (CS on pin 10) or RTC_DS3231 for a DS3231 on the default I2C pins (optionally wire the SQW output to the PPS pin below.) 
+// Other options: RTC_DS3234 for a DS3234 on the default SPI interface pins (CS on pin 10 [CNC Y-Limit] ) or RTC_DS3231 for a DS3231 on the default I2C pins (optionally wire the SQW output to the PPS pin below.) 
 //#define RTC_DS3234
 #define RTC_OFF
 
 // PPS use _ON or _PULLUP to enable the input and use the built-in pullup resistor.  Sense rising edge on pin 21 for optional precision clock source (GPS, for example), default=_OFF
 #define PPS_SENSE_ON
 
-// PEC sense on Pin 2 use _ON or _PULLUP to enable the input/use the built-in pullup resistor (digital input) or provide a comparison value (see below) for Analog operation (on Pin A1,) default=_OFF
+// PEC sense on Pin 11 [CNC Limit-Z] use _ON or _PULLUP to enable the input/use the built-in pullup resistor (digital input) or provide a comparison value (see below) for Analog operation (on Pin A1 [CNC Hold]) default=_OFF
 // Analog values range from 0 to 1023 which indicate voltages from 0-3.3VDC on the analog pin, for example "PEC_SENSE 600" would detect an index when the voltage exceeds 2.92V
 // With either index detection method, once triggered 60s must expire before another detection can happen.  This gives time for the index magnet to pass by the detector before another cycle begins.
 // Ignored on Alt/Azm mounts.
@@ -58,22 +57,22 @@
 // PEC sense, rising edge (default with PEC_SENSE_STATE HIGH, use LOW for falling edge, ex. PEC_SENSE_ON) ; for optional PEC index
 #define PEC_SENSE_STATE HIGH
 
-// switch close (to ground) on Pin 3 for optional limit sense (stops gotos and/or tracking), default=_OFF
+// switch close (to ground) on Pin A0 [CNC Abort] for optional limit sense (stops gotos and/or tracking), default=_OFF
 #define LIMIT_SENSE_ON
 
-// light status LED by sink to ground (Pin 9) and source +5V (Pin 8), default=_ON.
+// light status LED by sink to ground (Pin 13 [CNC SpnEn]) and source +5V (Pin 12 [CNC SpnDir]), default=_ON.
 // _ON and OnStep keeps this illuminated to indicate that the controller is active.  When sidereal tracking this LED will rapidly flash
 #define STATUS_LED_PINS_ON
-// lights 2nd status LED by sink to ground (Pin 7), default=_OFF.
+// lights 2nd status LED by sink to ground (Pin 9 [CNC Limit-X]), default=_OFF.
 // _ON sets this to blink at 1 sec intervals when PPS is synced
 #define STATUS_LED2_PINS_ON
 // lights reticule LED by sink to ground (Pin 44), default=_OFF.
 // RETICULE_LED_PINS n, where n=0 to 255 activates this feature and sets default brightness
-#define RETICULE_LED_PINS 200
+#define RETICULE_LED_PINS_OFF
 
 // Sound/buzzer on Pin 42, default=_OFF.
 // Specify frequency for a piezo speaker (for example "BUZZER 2000") or use BUZZER_ON for a piezo buzzer.
-#define BUZZER_ON
+#define BUZZER 442
 // Sound state at startup, default=_ON.
 #define DEFAULT_SOUND_ON
 
@@ -138,24 +137,29 @@
 #define MaxAzm                   180 // Alt/Az mounts only. +/- maximum allowed Azimuth, default =  180.  Allowed range is 180 to 360
 
 // AXIS1/2 STEPPER DRIVER CONTROL ------------------------------------------------------------------------------------------
-// Axis1: Pins 35,37 = Step,Dir (RA/Azm)
-// Axis2: Pins 24,22 = Step,Dir (Dec/Alt)
+// Axis1: Pins 2,5 = Step,Dir (RA/Azm)  [CNC X]
+// Axis2: Pins 3,6 = Step,Dir (Dec/Alt) [CNC Y]
 
 // Reverse the direction of movement.  Adjust as needed or reverse your wiring so things move in the right direction
 #define AXIS1_REVERSE_ON            // RA/Azm axis
 #define AXIS2_REVERSE_ON            // Dec/Alt axis
 
-// Stepper driver Enable support is always on, just wire Enable to Pins 23 (Axis1) and 36 (Axis2) and OnStep will pull these HIGH
+// CNC 3.0 Shiled use only one Pin (8) for enable or disable all stepper drivers
+// Alternate wiring _ON for separate Stepper driver Enable support for Pin 23 for Axis1 [CNC X], Pin 24 Axis2 [CNC Y] default= _OFF
+#define ALT_ENABLE_PIN_OFF 
+
+// Stepper driver Enable support is always on, just wire Enable to Pins 23 (Axis1) and 24 (Axis2) and OnStep will pull these HIGH
 // to disable stepper drivers on startup and when Parked or Homed.  An Align or UnPark will enable the drivers.  Adjust below if you need these pulled LOW to disable the drivers.
 #define AXIS1_DISABLE HIGH
 #define AXIS2_DISABLE HIGH
+
 
 // For equatorial mounts, _ON powers down the Declination axis when it's not being used to help lower power use.  During low rate guiding (<=1x) the axis stays enabled
 // for 10 minutes after any guide on either axis.  Otherwise, the Dec axis is disabled (powered off) 10 seconds after movement stops.
 #define AXIS2_AUTO_POWER_DOWN_OFF
 
 // Basic stepper driver mode setup . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-// If used, this requires connections M0, M1, and M2 on Pins 29,27,25 for Axis1 (RA/Azm) and Pins 30,32,34 for Axis2 (Dec/Alt).
+// If used, this requires connections M0, M1, and M2 on Pins 25,27,29 for Axis1 (RA/Azm) and Pins 24,26,8 for Axis2 (Dec/Alt).
 // Stepper driver models are as follows: (for example AXIS1_DRIVER_MODEL DRV8825,) A4988, LV8729, RAPS128, TMC2208, TMC2130 (spreadCycle,) 
 // TMC2130_QUIET (stealthChop tracking,) TMC2130_VQUIET (full stealthChop mode,) add _LOWPWR for 50% power during tracking (for example: TMC2130_QUIET_LOWPWR)
 #define AXIS1_DRIVER_MODEL_OFF      // Axis1 (RA/Azm):  Default _OFF, Stepper driver model (see above)
@@ -166,14 +170,14 @@
 #define AXIS2_MICROSTEPS_GOTO_OFF   // Axis2 (Dec/Alt): Default _OFF, Optional microstep mode used during gotos
 // Note: you can replace this section with the contents of "AdvancedStepperSetup.txt" . . . . . . . . . . . . . . . . . . . 
 
-// Stepper driver Fault detection, just wire the driver Fault signal to Pins 39 (Axis1) and 38 (Axis2), default=_OFF.  The SPI interface (on M0/M1/M2/Aux) can be used to detect errors on the TMC2130.
+// Stepper driver Fault detection, just wire the driver Fault signal to Pins 31 (Axis1) and 30 (Axis2), default=_OFF.  The SPI interface (on M0/M1/M2/Aux) can be used to detect errors on the TMC2130.
 // other settings are LOW, HIGH, TMC2130 (if available applies internal pullup if LOW and pulldown if HIGH.)
 #define AXIS1_FAULT_OFF
 #define AXIS2_FAULT_OFF
 
 // ------------------------------------------------------------------------------------------------------------------------
 // FOCUSER ROTATOR OR ALT/AZ DE-ROTATION ----------------------------------------------------------------------------------
-// A9,A8 = Step,Dir
+// 4,7 = Step,Dir [CNC Z] (Alternale Enable pin in A8)
 #define ROTATOR_OFF                  // enable or disable rotator feature (for any mount type,) default=_OFF (de-rotator is available only for MOUNT_TYPE_ALTAZM.)
 #define MaxRateAxis3               8 // this is the minimum number of milli-seconds between micro-steps, default=8
 #define StepsPerDegreeAxis3     64.0 // calculated as    :  stepper_steps * micro_steps * gear_reduction1 * (gear_reduction2/360)
@@ -185,7 +189,7 @@
 #define AXIS3_REVERSE_OFF            // reverse the direction of Axis3 rotator movement
 
 // FOCUSER1 ---------------------------------------------------------------------------------------------------------------
-// A11,A10 = Step,Dir
+// A11,A10 = Step,Dir [CNC A] Aditions wiring is need  (Alternale Enable pin is A9)
 #define FOCUSER1_ON                 // enable or disable focuser feature, default=_OFF
 #define MaxRateAxis4              1  // this is the minimum number of milli-seconds between micro-steps, default=8
 #define StepsPerMicrometerAxis4   8 // figure this out by testing or other means

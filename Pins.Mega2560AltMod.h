@@ -1,5 +1,11 @@
 // -------------------------------------------------------------------------------------------------
 // Pin map for legacy OnStep "Alternate pin-map" (Mega2560)
+//
+//  Modify by Roman Hujer:
+//
+//    30-Mar-2018  Add Focuser1 support  and  (only exprimental support for Arduino Due) 
+//    15-Mar-2018  Add Axis4_EN only for fix compiler error for new Alpha
+//
 
 #if defined(__AVR_ATmega2560__) || defined(__SAM3X8E__)
 
@@ -56,21 +62,11 @@
 #define Axis2_Aux     38    // Pin 38 (Aux - SPI MISO)
 #define Axis2_Mode    40    // Pin 40 (Aux Decay Mode for Axis2)
 
-// For rotator stepper driver 
-#define Axis3DirPin   A8    // Pin A8 (Dir)
-#define Axis3StepPin  A9    // Pin A9 (Step)
-
 
 // For focuser1 stepper driver
-#define Axis4DirPin   A10    // Pin A10 (Dir)
-#define Axis4StepPin  A11    // Pin A11 (Step)
-
-
-
-// For focuser2 stepper driver
-#define Axis5DirPin   A12    // Pin A12 (Dir)
-#define Axis5StepPin  A13    // Pin A13 (Step)
-
+#define Axis4_EN      A9    // Pin A18 (Enabled)
+#define Axis4DirPin   A10   // Pin A10 (Dir)
+#define Axis4StepPin  A11   // Pin A11 (Step)
 
 // ST4 interface
 #define ST4RAw        47    // Pin 47 ST4 RA- West

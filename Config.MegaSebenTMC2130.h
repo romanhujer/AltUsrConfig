@@ -1,8 +1,5 @@
 // -----------------------------------------------------------------------------------
 // for Seben EQ3 TMC2130 drivers
-// Configuration for legacy OnStep "Alternate pin-map" (Mega2560) 
-// *** this is for backwards compatability with older OnStep systems ***
-
 /*
  * For more information on setting OnStep up see http://www.stellarjourney.com/index.php?r=site/equipment_onstep and 
  * join the OnStep Groups.io at https://groups.io/g/onstep
@@ -172,7 +169,7 @@
 #define AXIS1_DRIVER_MODEL TMC2130_VQUIET      // Axis1 (RA/Azm):  Default _OFF, Stepper driver model (see above)
 #define AXIS1_MICROSTEPS 32        // Axis1 (RA/Azm):  Default _OFF, Microstep mode when the scope is doing sidereal tracking (for example: AXIS1_MICROSTEPS 32)
 #define AXIS1_MICROSTEPS_GOTO_OFF   // Axis1 (RA/Azm):  Default _OFF, Optional microstep mode used during gotos (for example: AXIS1_MICROSTEPS_GOTO 2)
-#define AXIS2_DRIVER_MODEL TMC2130_VQUIET_LOWPWR      // Axis2 (Dec/Alt): Default _OFF, Stepper driver model (see above)
+#define AXIS2_DRIVER_MODEL TMC2130_VQUIET      // Axis2 (Dec/Alt): Default _OFF, Stepper driver model (see above)
 #define AXIS2_MICROSTEPS 32        // Axis2 (Dec/Alt): Default _OFF, Microstep mode when the scope is doing sidereal tracking
 #define AXIS2_MICROSTEPS_GOTO_OFF   // Axis2 (Dec/Alt): Default _OFF, Optional microstep mode used during gotos
 // Note: you can replace this section with the contents of "AdvancedStepperSetup.txt" . . . . . . . . . . . . . . . . . . . 
@@ -197,21 +194,24 @@
 
 // FOCUSER1 ---------------------------------------------------------------------------------------------------------------
 // A11,A10 = Step,Dir
-#define FOCUSER1_ON                 // enable or disable focuser feature, default=_OFF
-#define MaxRateAxis4               8 // this is the minimum number of milli-seconds between micro-steps, default=8
-#define StepsPerMicrometerAxis4  0.5 // figure this out by testing or other means
-#define MinAxis4               -25.0 // minimum allowed Axis4 position in millimeters, default = -25.0
-#define MaxAxis4                25.0 // maximum allowed Axis4 position in millimeters, default =  25.0
+#define FOCUSER1_ON               // enable or disable focuser feature, default=_OFF
+#define MaxRateAxis4            1 // this is the minimum number of milli-seconds between micro-steps, default=8
+#define StepsPerMicrometerAxis4 8.08421 // figure this out by testing or other means
+#define MinAxis4               -80.0 // minimum allowed Axis4 position in millimeters, default = -25.0
+#define MaxAxis4                80.0 // maximum allowed Axis4 position in millimeters, default =  25.0
 #define AXIS4_REVERSE_OFF            // reverse the direction of Axis4 focuser movement
 
 // FOCUSER2 ---------------------------------------------------------------------------------------------------------------
 // A13,A12 = Step,Dir
-#define FOCUSER2_OFF                 // enable or disable focuser feature, default=_OFF
+#define FOCUSER2_OFF                  // enable or disable focuser feature, default=_OFF
 #define MaxRateAxis5               8 // this is the minimum number of milli-seconds between micro-steps, default=8
 #define StepsPerMicrometerAxis5  0.5 // figure this out by testing or other means
 #define MinAxis5               -25.0 // minimum allowed Axis5 position in millimeters, default = -25.0
 #define MaxAxis5                25.0 // maximum allowed Axis5 position in millimeters, default =  25.0
 #define AXIS5_REVERSE_OFF            // reverse the direction of Axis5 focuser movement
+
+
+//AUTOSTART_TRACKING_OFF
 
 // THAT'S IT FOR USER CONFIGURATION!
 
