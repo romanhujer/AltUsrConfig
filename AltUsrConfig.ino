@@ -32,7 +32,7 @@
  *   #include "Config.TM4C.h"
  *   #include "Config.STM32.h"
  *   //Add here this line:
- *   #include "src/addons/AltUsrConfig/AltUsrConfig.h" 
+ *   #include "addons/AltUsrConfig/AltUsrConfig.h" 
  *   
  *   #include "Validate.h"
  *   
