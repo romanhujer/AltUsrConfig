@@ -33,6 +33,8 @@
 // Finally, during a goto pressing any button aborts the slew.  If meridian flip paused at home, pressing any button continues.  default=_ON
 #define ST4_HAND_CONTROL_ON
 
+#define ST4_HAND_CONTROL_FOCUSER_ON
+
 // use separate pulse-guide rate so centering and guiding don't disturb each other, default=_ON
 #define SEPARATE_PULSE_GUIDE_RATE_ON
 
