@@ -202,9 +202,9 @@
 // A11,A10 = Step,Dir
 #define FOCUSER1_ON               // enable or disable focuser feature, default=_OFF
 #define MaxRateAxis4            1 // this is the minimum number of milli-seconds between micro-steps, default=8
-#define StepsPerMicrometerAxis4 1 // figure this out by testing or other means
-#define MinAxis4               -250.0 // minimum allowed Axis4 position in millimeters, default = -25.0
-#define MaxAxis4                250.0 // maximum allowed Axis4 position in millimeters, default =  25.0
+#define StepsPerMicrometerAxis4 0.6 // figure this out by testing or other means
+#define MinAxis4               -40.0 // minimum allowed Axis4 position in millimeters, default = -25.0
+#define MaxAxis4                40.0 // maximum allowed Axis4 position in millimeters, default =  25.0
 #define AXIS4_REVERSE_OFF            // reverse the direction of Axis4 focuser movement
 
 
