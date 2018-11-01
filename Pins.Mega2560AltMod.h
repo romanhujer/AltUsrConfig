@@ -69,14 +69,13 @@
 #define Axis4StepPin  A11   // Pin A11 (Step)
 
 // ST4 interface
-#define ST4RAw        47    // Pin 47 ST4 RA- West
+#define ST4RAw        49    // Pin 49 ST4 RA- West
 #define ST4DEs        43    // Pin 43 ST4 DE- South
 #define ST4DEn        45    // Pin 45 ST4 DE+ North
-#define ST4RAe        49    // Pin 49 ST4 RA+ East
+#define ST4RAe        47    // Pin 47 ST4 RA+ East
 
 
 #else
 #error "Wrong processor for this configuration!"
 
 #endif
-
