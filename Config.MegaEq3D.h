@@ -10,7 +10,7 @@
  *
 */
 
-#define MegaEq3D_OFF    //  <- Turn _ON to use this configuration
+#define MegaEq3D_ON  //  <- Turn _ON to use this configuration
 
 #ifdef MegaEq3D_ON 
 // -------------------------------------------------------------------------------------------------------------------------
@@ -67,7 +67,7 @@
 #define STATUS_LED2_PINS_ON
 // lights reticule LED by sink to ground (Pin 44), default=_OFF.
 // RETICULE_LED_PINS n, where n=0 to 255 activates this feature and sets default brightness
-#define RETICULE_LED_PINS 64
+#define RETICULE_LED_PINS 220
 
 // Sound/buzzer on Pin 42, default=_OFF.
 // Specify frequency for a piezo speaker (for example "BUZZER 2000") or use BUZZER_ON for a piezo buzzer.
@@ -103,16 +103,17 @@
                                      // too slow and the mount will be sluggish while it moves through the backlash
                                      // for the most part this doesn't need to be changed, but adjust when needed.  Default=25
                                      // Axis1 is for RA/Az
-#define StepsPerDegreeAxis1  12288.0  // calculated as    :  stepper_steps * micro_steps * gear_reduction1 * (gear_reduction2/360)
-                                     // NEMA17 + PLANET   :  200           * 16          * 27/20          *  1024/360       = 12288.0
+#define StepsPerDegreeAxis1  1760.89883  // calculated as    :  stepper_steps * micro_steps * gear_reduction1 * (gear_reduction2/360)
+                                     // NEMA17 + PLANET   :  200           * 32          * 1          *  (99+104/2057)       = 1760.89883
+
 
                                      // Axis2 is for Dec/Alt
-#define StepsPerDegreeAxis2  12288.0   // calculated as    :  stepper_steps * micro_steps * gear_reduction1 * (gear_reduction2/360)
-                                     // NEMA17 + PLANET  :   200           * 16         * 27/20            * 1024/360       = 12288.0
+#define StepsPerDegreeAxis2  1760.89883   // calculated as    :  stepper_steps * micro_steps * gear_reduction1 * (gear_reduction2/360)
+                                     // NEMA17 + PLANET   :  200           * 32          * 1          *  (99+104/2057)       = 1760.89883
                                      
                                      // PEC, number of steps for a complete worm rotation (in RA), (StepsPerDegreeAxis1*360)/gear_reduction2.  Ignored on Alt/Azm mounts.
-#define StepsPerWormRotationAxis1 4320L
-                                     //  NEMA17 + PLANET         : (12288*360)/1024 = 4320 
+#define StepsPerWormRotationAxis1 6400L
+                                     //  NEMA17 + PLANET         : (1760.89883*360)/(99+104/2057) = 6400 
 
 
 #define PECBufferSize           824  // PEC, buffer size, max should be no more than 3384, your required buffer size >= StepsPerAxis1WormRotation/(StepsPerDegeeAxis1/240)
@@ -137,8 +138,8 @@
 // Axis2: Pins 24,22 = Step,Dir (Dec/Alt)
 
 // Reverse the direction of movement.  Adjust as needed or reverse your wiring so things move in the right direction
-#define AXIS1_REVERSE_ON            // RA/Azm axis
-#define AXIS2_REVERSE_ON            // Dec/Alt axis
+#define AXIS1_REVERSE_OFF            // RA/Azm axis
+#define AXIS2_REVERSE_OFF           // Dec/Alt axis
 
 // Stepper driver Enable support is always on, just wire Enable to Pins 23 (Axis1) and 36 (Axis2) and OnStep will pull these HIGH
 // to disable stepper drivers on startup and when Parked or Homed.  An Align or UnPark will enable the drivers.  Adjust below if you need these pulled LOW to disable the drivers.
@@ -184,4 +185,3 @@
 #define FileVersionConfig 2
 #include "Pins.Mega2560AltMod.h"
 #endif
-

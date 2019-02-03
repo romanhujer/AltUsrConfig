@@ -183,4 +183,3 @@
 #define FileVersionConfig 2
 #include "Pins.Mega2560AltMod.h"
 #endif
-
