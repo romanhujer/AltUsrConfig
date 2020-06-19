@@ -10,7 +10,7 @@
  *
 */
 
-#define MegaEq3D_ON  //  <- Turn _ON to use this configuration
+#define MegaEq3D_OFF  //  <- Turn _ON to use this configuration
 
 #ifdef MegaEq3D_ON 
 // -------------------------------------------------------------------------------------------------------------------------
@@ -57,7 +57,7 @@
 #define PEC_SENSE_STATE HIGH
 
 // switch close (to ground) on Pin 3 for optional limit sense (stops gotos and/or tracking), default=_OFF
-#define LIMIT_SENSE_ON
+#define LIMIT_SENSE_OFF
 
 // light status LED by sink to ground (Pin 9) and source +5V (Pin 8), default=_ON.
 // _ON and OnStep keeps this illuminated to indicate that the controller is active.  When sidereal tracking this LED will rapidly flash
